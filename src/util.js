@@ -73,8 +73,19 @@ export default class Util {
     }
 
     findFinalPosition(element){
-        console.log('--- ', element)
-        // let currentPosition  = new Coordinate()
+        let self = this;
+        let initPos = element[0];
+        let movements = element[1]
+        let temp = self.fetchPointDirectionFromString(initPos)
+        let rover1 = new Rover(temp.point.x, temp.point.y, temp.direction);
+
+        
     }
 
+    fetchPointDirectionFromString(str){
+        let tempArr = str.split(" ");
+        if (tempArr.length !== 3) console.log('Issue with input data points');
+        let point = new Coordinate(tempArr[0], tempArr[1]).getPoint();
+        return {point: point, direction: tempArr[2]};
+    }
 }
