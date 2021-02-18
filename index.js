@@ -9,8 +9,8 @@ if(readData){
     let roverSteps = obj1.arr;
     let final = ''
 
-    final += roverSteps.map(elem => output.findFinalPosition(elem))
-    console.log(final)
+    final = roverSteps.map(elem => output.findFinalPosition(elem))
+    console.log(final.join(''))
 }else{
     console.log('Empty input')
 }

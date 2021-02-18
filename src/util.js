@@ -88,10 +88,8 @@ export default class Util {
                     break;
             }
         }
-        console.log('-- ', `${rover1.coordinate.x} ${rover1.coordinate.y} ${rover1.direction} \n`)
         return `${rover1.coordinate.x} ${rover1.coordinate.y} ${rover1.direction} \n`;
     }
-
 
     fetchPointDirectionFromString(str){
         let tempArr = str.split(" ");
