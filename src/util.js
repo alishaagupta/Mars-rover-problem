@@ -17,13 +17,16 @@ export default class Util {
 
         let self = this;
         try{
-            fs.readFile(inputFile,{encoding: 'utf8'}, function(err, res){
+            let result = fs.readFileSync(inputFile,{encoding: 'utf8'}, function(err, res){
                 if(res){
-                    return res.toString();
+                    result = res.toString();
+                    return
                 }else{
                     console.log('Error parsing the input ', err)
                 }
             })
+
+            return result
         }catch(err){
             console.log('Error processing the file', err)
         }
@@ -48,7 +51,6 @@ export default class Util {
     }
 
     fetchPointDataFromString(str){
-
         let tempArr = str.split(" ");
         if (tempArr.length != 2) console.log('Issue with input data points');
         let point = new Coordinate(tempArr[0], tempArr[1]).getPoint();
@@ -62,7 +64,6 @@ export default class Util {
      */
 
     unflattenArray(arr, n){
-
         let returnArr = []
         for(var i=0; i < arr.length; i+n){
             returnArr.push(arr.splice(i, i+n))
@@ -72,8 +73,8 @@ export default class Util {
     }
 
     findFinalPosition(element){
-
-        let currentPosition  = new Coordinate()
+        console.log('--- ', element)
+        // let currentPosition  = new Coordinate()
     }
 
 }
