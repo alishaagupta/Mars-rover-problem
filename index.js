@@ -8,10 +8,8 @@ if(readData){
     let obj1 = output.transformData(readData);
     let roverSteps = obj1.arr;
     let final = ''
-    for(let i=0 ; i< roverSteps.length; i++){
-        let temp = output.findFinalPosition(roverSteps[i])
-        final +=  `${temp.coordinate.x} ${temp.coordinate.y} ${temp.direction} \n`
-    }
+
+    final += roverSteps.map(elem => output.findFinalPosition(elem))
     console.log(final)
 }else{
     console.log('Empty input')

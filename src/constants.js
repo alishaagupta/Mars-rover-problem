@@ -1,2 +1,2 @@
-let direction = ["N", "S", "E", "W"]
+let direction = ["N", "E", "S", "W"]
 let options = ["L", "R", "M"]

@@ -88,7 +88,8 @@ export default class Util {
                     break;
             }
         }
-        return rover1;
+        console.log('-- ', `${rover1.coordinate.x} ${rover1.coordinate.y} ${rover1.direction} \n`)
+        return `${rover1.coordinate.x} ${rover1.coordinate.y} ${rover1.direction} \n`;
     }
 
 

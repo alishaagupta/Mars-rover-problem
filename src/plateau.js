@@ -7,10 +7,8 @@ export default class Plateau{
     }
 
     isPointValid(x,y){
-
         let isValid = true;
         ((x < this.start.x || x > this.corner.x) || (y < this.start.y || y > this.corner.y)) ? isValid = false : isValid = true
-        return isValid;
-         
+        return isValid;    
     }
 }
