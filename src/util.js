@@ -2,12 +2,9 @@ import fs from 'fs'
 import Plateau from './plateau.js';
 import Coordinate from './coordinate.js';
 import Rover from './rover.js';
+import { randomBytes } from 'crypto';
 
 export default class Util {
-
-    constructor(){
-
-    }
 
     /**
      * 
@@ -68,24 +65,42 @@ export default class Util {
         for(var i=0; i < arr.length; i+n){
             returnArr.push(arr.splice(i, i+n))
         }
-
         return returnArr;
     }
 
     findFinalPosition(element){
         let self = this;
         let initPos = element[0];
-        let movements = element[1]
+        let movements = element[1].split('')
         let temp = self.fetchPointDirectionFromString(initPos)
         let rover1 = new Rover(temp.point.x, temp.point.y, temp.direction);
 
-        
+        for(let i=0; i< movements.length; i++){
+            switch(movements[i]){
+                case 'L':
+                    rover1.rotateLeft();
+                    break;
+                case 'R':
+                    rover1.rotateRight();
+                    break;
+                case 'M':
+                    rover1.moveForward();
+                    break;
+            }
+        }
+        return rover1;
     }
+
 
     fetchPointDirectionFromString(str){
         let tempArr = str.split(" ");
         if (tempArr.length !== 3) console.log('Issue with input data points');
-        let point = new Coordinate(tempArr[0], tempArr[1]).getPoint();
-        return {point: point, direction: tempArr[2]};
+
+        let x = parseInt(tempArr[0]);
+        let y = parseInt(tempArr[1]);
+        let dir = tempArr[2];
+
+        let point = new Coordinate(x, y).getPoint();
+        return {point: point, direction: dir};
     }
 }

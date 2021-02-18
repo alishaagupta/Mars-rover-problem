@@ -12,9 +12,9 @@ export default class Rover{
         this.coordinate = new Coordinate(x, y).getPoint()
     }
 
-    rotateRight(currentDirection){
+    rotateRight(){
         let finalDirection;
-        switch(currentDirection){
+        switch(this.direction){
             case 'N':
                 finalDirection = 'E';
                 break;
@@ -28,12 +28,15 @@ export default class Rover{
                 finalDirection = 'S';
                 break;
         }
-        return finalDirection;
+        this.direction = finalDirection;
+        return {x: this.x, y: this.y, direction: this.direction};
+
     }
 
     rotateLeft(currentDirection){
         let finalDirection;
-        switch(currentDirection){
+
+        switch(this.direction){
             case 'N':
                 finalDirection = 'W';
                 break;
@@ -47,23 +50,43 @@ export default class Rover{
                 finalDirection = 'N';
                 break;
         }
-        return finalDirection;
+        this.direction = finalDirection;
+        return {x: this.x, y: this.y, direction: this.direction};
     }
 
-    moveRight(point){
-        return {x: point.x + 1, y: point.y};
+    moveForward(){
+        let self = this;
+        switch(this.direction){
+            case 'N':
+                self.moveTop();
+                break;
+            case 'S':
+                self.moveBottom();
+                break;
+            case 'E':
+                self.moveRight();
+                break;
+            case 'W':
+                self.moveLeft();
+                break;
+
+        }
+
+    }
+    moveRight(){
+        this.coordinate.x = this.coordinate.x + 1;
     }
 
-    moveLeft(point){
-        return {x: point.x - 1, y: point.y};
+    moveLeft(){
+        this.coordinate.x = this.coordinate.x -1 ;
     }
 
     moveTop(){
-        return {x: point.x , y: point.y + 1};
+        this.coordinate.y = this.coordinate.y + 1;
     }
 
     moveBottom(){
-        return {x: point.x , y: point.y - 1};
+        this.coordinate.y = this.coordinate.y - 1;
     }
 
     getCurrentPosition(){
